@@ -1,9 +1,15 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
-export const size = { width: 32, height: 32 };
+// 구글 검색 결과 파비콘 요건(스펙 §12.5): 정사각 1:1, 최소 8×8, 48×48보다 크게 권장.
+// party 템플릿의 32×32는 권장치 미달이라 96×96으로 올렸다. 배포 후 이 경로를 바꾸지 말 것.
+export const size = { width: 96, height: 96 };
 export const contentType = "image/png";
 
-export default function Icon() {
+export default async function Icon() {
+  const bold = await readFile(join(process.cwd(), "assets/fonts/pt-extrabold.ttf"));
+
   return new ImageResponse(
     (
       <div
@@ -13,24 +19,20 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0F172A",
-          borderRadius: 7,
+          background: "#0F3D3E",
+          borderRadius: 20,
+          fontFamily: "Pretendard",
+          fontSize: 58,
+          fontWeight: 800,
+          color: "#FFFFFF",
         }}
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#FFFFFF"
-          strokeWidth={3}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M20 6 9 17l-5-5" />
-        </svg>
+        안
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [{ name: "Pretendard", data: bold, weight: 800, style: "normal" }],
+    }
   );
 }

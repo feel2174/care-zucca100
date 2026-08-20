@@ -1,9 +1,13 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-export default function AppleIcon() {
+export default async function AppleIcon() {
+  const bold = await readFile(join(process.cwd(), "assets/fonts/pt-extrabold.ttf"));
+
   return new ImageResponse(
     (
       <div
@@ -13,23 +17,19 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0F172A",
+          background: "#0F3D3E",
+          fontFamily: "Pretendard",
+          fontSize: 108,
+          fontWeight: 800,
+          color: "#FFFFFF",
         }}
       >
-        <svg
-          width="104"
-          height="104"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#FFFFFF"
-          strokeWidth={2.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M20 6 9 17l-5-5" />
-        </svg>
+        안
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [{ name: "Pretendard", data: bold, weight: 800, style: "normal" }],
+    }
   );
 }
