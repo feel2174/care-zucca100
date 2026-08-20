@@ -28,5 +28,8 @@ yarn-error.log*
 # vercel
 .vercel
 
+# 썸네일 생성 스크립트 임시 폴더 (scripts/build_thumbnails.mjs)
+/.thumb-tmp
+
 # typescript
 *.tsbuildinfo
