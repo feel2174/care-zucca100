@@ -4,6 +4,8 @@ import { ChevronRight, FileText } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Disclaimer } from "@/components/Disclaimer";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { getGuides } from "@/lib/guides";
 import { SITE } from "@/lib/site";
 
@@ -35,11 +37,15 @@ export default function GuideIndexPage() {
     })),
   };
 
+  const crumbs = trail({ name: "가이드", href: "/guide" });
+
   return (
     <>
       <SiteHeader />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
+        <Breadcrumbs crumbs={crumbs} />
+
         <h1 className="text-h1 font-extrabold tracking-tight text-primary sm:text-h1lg">
           안마바우처 가이드
         </h1>
@@ -104,6 +110,10 @@ export default function GuideIndexPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(crumbs)) }}
         />
       </main>
 

@@ -6,6 +6,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { LocationFinder } from "@/components/LocationFinder";
 import { ConditionCodes } from "@/components/ConditionCodes";
 import { Disclaimer } from "@/components/Disclaimer";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { getGuide, getGuides } from "@/lib/guides";
 import { SITE } from "@/lib/site";
 
@@ -69,11 +71,18 @@ export default async function GuidePage({ params }: { params: Promise<{ topic: s
         inLanguage: "ko",
       };
 
+  const crumbs = trail(
+    { name: "가이드", href: "/guide" },
+    { name: g.title, href: `/guide/${g.slug}` },
+  );
+
   return (
     <>
       <SiteHeader />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
+        <Breadcrumbs crumbs={crumbs} />
+
         <h1 className="text-h1 font-extrabold tracking-tight text-primary sm:text-h1lg">
           {g.title}
         </h1>
@@ -137,6 +146,10 @@ export default async function GuidePage({ params }: { params: Promise<{ topic: s
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(crumbs)) }}
         />
       </main>
 

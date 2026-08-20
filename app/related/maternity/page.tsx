@@ -6,6 +6,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { LocationFinder } from "@/components/LocationFinder";
 import { ConditionCodes } from "@/components/ConditionCodes";
 import { Disclaimer } from "@/components/Disclaimer";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { SITE } from "@/lib/site";
 
 // 스펙 §11.1 — "출산 안마바우처"라는 별도 제도는 없다. 다만 산모라도 질환 요건을
@@ -97,11 +99,15 @@ export default function MaternityPage() {
     ],
   };
 
+  const crumbs = trail({ name: "산모·출산", href: "/related/maternity" });
+
   return (
     <>
       <SiteHeader />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
+        <Breadcrumbs crumbs={crumbs} />
+
         <h1 className="text-h1 font-extrabold tracking-tight text-primary sm:text-h1lg">
           출산 안마바우처, 산모도 신청할 수 있나요?
         </h1>
@@ -193,6 +199,10 @@ export default function MaternityPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(crumbs)) }}
         />
       </main>
 

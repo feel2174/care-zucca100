@@ -6,6 +6,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LocationFinder } from "@/components/LocationFinder";
 import { Disclaimer } from "@/components/Disclaimer";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { getTarget, getTargets } from "@/lib/targets";
 import { SITE } from "@/lib/site";
 
@@ -104,11 +106,15 @@ export default async function TargetPage({ params }: { params: Promise<{ slug: s
           inLanguage: "ko",
         };
 
+  const crumbs = trail({ name: t.name, href: `/target/${t.slug}` });
+
   return (
     <>
       <SiteHeader />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
+        <Breadcrumbs crumbs={crumbs} />
+
         <h1 className="text-h1 font-extrabold tracking-tight text-primary sm:text-h1lg">
           {t.seoTitle}
         </h1>
@@ -187,6 +193,10 @@ export default async function TargetPage({ params }: { params: Promise<{ slug: s
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(crumbs)) }}
         />
       </main>
 

@@ -5,6 +5,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LocationFinder } from "@/components/LocationFinder";
 import { Disclaimer } from "@/components/Disclaimer";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { getSidos } from "@/lib/regions";
 
 export const metadata: Metadata = {
@@ -18,11 +20,15 @@ export const metadata: Metadata = {
 export default function FindPage() {
   const sidos = getSidos();
 
+  const crumbs = trail({ name: "이용처 찾기", href: "/find" });
+
   return (
     <>
       <SiteHeader />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
+        <Breadcrumbs crumbs={crumbs} />
+
         <h1 className="text-h1 font-extrabold tracking-tight text-primary sm:text-h1lg">
           시각장애인 안마원 찾기
         </h1>
@@ -71,6 +77,10 @@ export default function FindPage() {
         </section>
 
         <Disclaimer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(crumbs)) }}
+        />
       </main>
 
       <SiteFooter />

@@ -5,6 +5,8 @@ import { MapPin, Building2 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Disclaimer } from "@/components/Disclaimer";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { getSido, getSidos } from "@/lib/regions";
 import { buildNaverMapUrl } from "@/lib/naver";
 import { SITE } from "@/lib/site";
@@ -84,11 +86,18 @@ export default async function SidoPage({ params }: { params: Promise<{ sido: str
     ],
   };
 
+  const crumbs = trail(
+    { name: "이용처 찾기", href: "/find" },
+    { name: s.name, href: `/find/${s.slug}` },
+  );
+
   return (
     <>
       <SiteHeader />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
+        <Breadcrumbs crumbs={crumbs} />
+
         <h1 className="text-h1 font-extrabold tracking-tight text-primary sm:text-h1lg">
           {s.name} 시각장애인 안마원 찾기
         </h1>
@@ -208,6 +217,10 @@ export default async function SidoPage({ params }: { params: Promise<{ sido: str
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(crumbs)) }}
         />
       </main>
 
