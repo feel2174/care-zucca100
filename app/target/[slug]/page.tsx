@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LocationFinder } from "@/components/LocationFinder";
 import { Disclaimer } from "@/components/Disclaimer";
+import { RelatedTargets } from "@/components/RelatedTargets";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { getTarget, getTargets } from "@/lib/targets";
@@ -187,6 +188,8 @@ export default async function TargetPage({ params }: { params: Promise<{ slug: s
         <p className="mt-8 rounded-2xl bg-band px-5 py-4 text-meta text-muted">
           {t.note}
         </p>
+
+        <RelatedTargets current={t.slug} />
 
         <Disclaimer />
 

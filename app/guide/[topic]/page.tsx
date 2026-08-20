@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { LocationFinder } from "@/components/LocationFinder";
 import { ConditionCodes } from "@/components/ConditionCodes";
 import { Disclaimer } from "@/components/Disclaimer";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { getGuide, getGuides } from "@/lib/guides";
@@ -116,6 +117,16 @@ export default async function GuidePage({ params }: { params: Promise<{ topic: s
                 질환 요건은 어떻게 입증하나요
               </h2>
               <ConditionCodes />
+              <p className="mt-4 text-meta text-muted">
+                산후 근골격계 질환으로 신청이 가능한지 궁금하시다면{" "}
+                <Link
+                  href="/related/maternity"
+                  className="font-semibold text-link underline underline-offset-2"
+                >
+                  산모·출산 관련 안내
+                </Link>
+                를 함께 확인해 보세요.
+              </p>
             </section>
 
             <section className="section">
@@ -140,6 +151,8 @@ export default async function GuidePage({ params }: { params: Promise<{ topic: s
           </Link>
           를 참고하세요. 제도 운영 방식은 지자체마다 다를 수 있습니다.
         </p>
+
+        <RelatedGuides current={g.slug} />
 
         <Disclaimer />
 

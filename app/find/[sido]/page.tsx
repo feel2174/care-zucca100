@@ -5,6 +5,7 @@ import { MapPin, Building2 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Disclaimer } from "@/components/Disclaimer";
+import { SidoGrid } from "@/components/SidoGrid";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
 import { getSido, getSidos } from "@/lib/regions";
@@ -211,6 +212,11 @@ export default async function SidoPage({ params }: { params: Promise<{ sido: str
             다른 지역 보기
           </Link>
         </p>
+
+        <section className="section">
+          <h2 className="text-h2 font-extrabold tracking-tight">다른 지역 보기</h2>
+          <SidoGrid exclude={s.slug} />
+        </section>
 
         <Disclaimer />
 

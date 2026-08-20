@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { MapPin } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LocationFinder } from "@/components/LocationFinder";
 import { Disclaimer } from "@/components/Disclaimer";
+import { SidoGrid } from "@/components/SidoGrid";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { trail, breadcrumbJsonLd } from "@/lib/breadcrumbs";
-import { getSidos } from "@/lib/regions";
 
 export const metadata: Metadata = {
   title: "시각장애인 안마원 찾기 — 내 위치·지역별 안마바우처 이용처",
@@ -18,7 +16,6 @@ export const metadata: Metadata = {
 };
 
 export default function FindPage() {
-  const sidos = getSidos();
 
   const crumbs = trail({ name: "이용처 찾기", href: "/find" });
 
@@ -62,18 +59,7 @@ export default function FindPage() {
 
         <section className="section">
           <h2 className="text-h2 font-extrabold tracking-tight">지역별 안내</h2>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-            {sidos.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/find/${s.slug}`}
-                className="tile flex min-h-[48px] items-center gap-2 tile-tight text-meta font-semibold transition-all hover:-translate-y-0.5 hover:border-accent"
-              >
-                <MapPin size={15} className="text-accent" aria-hidden />
-                {s.name}
-              </Link>
-            ))}
-          </div>
+          <SidoGrid />
         </section>
 
         <Disclaimer />
