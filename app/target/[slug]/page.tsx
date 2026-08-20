@@ -162,7 +162,7 @@ export default async function TargetPage({ params }: { params: Promise<{ slug: s
           <>
             <section className="section">
               <h2 className="text-h2 font-extrabold tracking-tight">가까운 안마원 찾기</h2>
-              <LocationFinder query="시각장애인 안마원" label="안마원" />
+              <LocationFinder query="시각장애인 안마원" label="안마원" broadQuery="안마원" />
             </section>
             <p className="mt-4 text-meta text-muted">
               신청 절차는{" "}

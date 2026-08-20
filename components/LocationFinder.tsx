@@ -14,7 +14,21 @@ type Status = "idle" | "locating" | "denied";
  * 권한 거부·실패 시 시도 그리드로 폴백하며, `query`만 바꾸면 안마원/주민센터/보건소에
  * 그대로 재사용된다.
  */
-export function LocationFinder({ query, label }: { query: string; label: string }) {
+export function LocationFinder({
+  query,
+  label,
+  broadQuery,
+}: {
+  query: string;
+  label: string;
+  /**
+   * 더 넓게 보기용 보조 검색어. 실측(2026-08-20, 강남 기준)에서 "시각장애인 안마원"은
+   * 24개, "안마원"은 50개가 나왔다. 좁은 쿼리가 결과를 절반으로 줄이지만, 넓은 쿼리에는
+   * 피부·체형관리 업소가 8곳 섞인다. 어느 쪽도 바우처 제공기관을 걸러내지는 못하므로
+   * (상호에 '시각장애인'이 들어간 곳은 양쪽 다 0개) 둘 다 제공하고 선택은 사용자에게 맡긴다.
+   */
+  broadQuery?: string;
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const sidos = getSidos();
 
@@ -58,6 +72,20 @@ export function LocationFinder({ query, label }: { query: string; label: string 
         버튼을 누르면 브라우저가 위치 사용 권한을 물어봅니다. 위치는 지도 검색에만 쓰이며
         저장하지 않습니다.
       </p>
+
+      {broadQuery && (
+        <p className="mt-3 text-caption text-muted">
+          찾는 곳이 적게 나오나요?{" "}
+          <a
+            href={buildNaverMapUrl(broadQuery)}
+            className="font-semibold text-link underline underline-offset-2"
+          >
+            &lsquo;{broadQuery}&rsquo;로 더 넓게 검색
+          </a>
+          해 보세요. 다만 바우처가 적용되지 않는 곳도 함께 나오므로, 방문 전 전화로 안마바우처
+          제공기관인지 확인하시는 것이 좋습니다.
+        </p>
+      )}
 
       {status === "denied" && (
         <p className="mt-4 rounded-xl bg-band px-4 py-3 text-meta text-foreground">

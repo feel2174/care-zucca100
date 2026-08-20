@@ -68,7 +68,7 @@ export default function HomePage() {
           <h2 className="text-h2 font-extrabold tracking-tight">
             가까운 안마원부터 찾아보기
           </h2>
-          <LocationFinder query="시각장애인 안마원" label="안마원" />
+          <LocationFinder query="시각장애인 안마원" label="안마원" broadQuery="안마원" />
         </section>
 
         <section id="targets" className="section scroll-mt-4">

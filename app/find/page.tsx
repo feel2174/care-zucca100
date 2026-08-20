@@ -44,7 +44,7 @@ export default function FindPage() {
 
         <section className="section">
           <h2 className="text-h2 font-extrabold tracking-tight">안마원 찾기</h2>
-          <LocationFinder query="시각장애인 안마원" label="안마원" />
+          <LocationFinder query="시각장애인 안마원" label="안마원" broadQuery="안마원" />
         </section>
 
         <section className="section">

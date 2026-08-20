@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, Building2 } from "lucide-react";
+import { MapPin, Building2, Search } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Disclaimer } from "@/components/Disclaimer";
@@ -44,6 +44,12 @@ export default async function SidoPage({ params }: { params: Promise<{ sido: str
       icon: <MapPin size={20} strokeWidth={2.2} aria-hidden />,
       title: `${s.name} 시각장애인 안마원 보기`,
       sub: "네이버 지도에서 최신 목록과 연락처를 확인할 수 있습니다.",
+    },
+    {
+      href: buildNaverMapUrl(`${s.name} 안마원`),
+      icon: <Search size={20} strokeWidth={2.2} aria-hidden />,
+      title: `${s.name} 안마원 전체 보기`,
+      sub: "결과가 적을 때 더 넓게 검색합니다. 바우처가 적용되지 않는 곳도 함께 나오므로 방문 전 확인이 필요합니다.",
     },
     {
       href: buildNaverMapUrl(`${s.name} 주민센터`),
