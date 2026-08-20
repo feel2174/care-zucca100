@@ -2,10 +2,11 @@ import Link from "next/link";
 import { HandHelping } from "lucide-react";
 import { SITE } from "@/lib/site";
 
+// 사이트의 핵심 흐름: 내가 대상인가 → 어떻게 신청하나 → 어디서 이용하나
 const NAV = [
-  { label: "대상별 안내", href: "/#targets" },
+  { label: "대상 확인", href: "/#targets" },
   { label: "신청방법", href: "/guide/apply" },
-  { label: "위치찾기", href: "/find" },
+  { label: "이용처 찾기", href: "/find" },
 ];
 
 export function SiteHeader() {

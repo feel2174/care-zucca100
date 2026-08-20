@@ -46,9 +46,9 @@ export default function HomePage() {
             누가 받고 어떻게 신청하나요?
           </h1>
           <p className="text-lead text-muted">
-            안마바우처는 하나의 제도가 아니라 대상에 따라 성격이 다릅니다. 어르신·장애인·국가유공자는
-            서비스를 받는 대상이고, 시각장애인은 서비스를 제공하는 안마사입니다. 대상별 자격과
-            신청 절차를 정리했습니다.
+            정부가 안마 비용의 90%를 지원하는 제도가 있습니다. 다만 누구나 받는 것은 아니고
+            어르신·장애인·국가유공자 등 대상이 정해져 있으며, 시각장애인은 받는 쪽이 아니라
+            서비스를 제공하는 안마사입니다. 내가 대상인지, 어떻게 신청하는지 순서대로 안내합니다.
           </p>
           {/* 검색 썸네일 후보로 크롤러가 안정적인 URL을 보게 해야 하므로 next/image가 아닌
             평문 img를 쓴다(스펙 §12.3). next/image는 /_next/image?url=... 로 재작성한다. */}
@@ -64,19 +64,13 @@ export default function HomePage() {
       </div>
 
       <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-9">
-        <section className="section">
-          <h2 className="text-h2 font-extrabold tracking-tight">
-            가까운 안마원부터 찾아보기
-          </h2>
-          <LocationFinder query="시각장애인 안마원" label="안마원" broadQuery="안마원" />
-        </section>
-
         <section id="targets" className="section scroll-mt-4">
           <h2 className="text-h2 font-extrabold tracking-tight">
             나는 어디에 해당하나요?
           </h2>
           <p className="mb-4 text-body text-muted">
-            정부지원 안마서비스(정식 명칭: 시각장애인 안마서비스)의 대상은 네 갈래로 나뉩니다.
+            정부지원 안마서비스(정식 명칭: 시각장애인 안마서비스)는 모든 사람이 받는 제도가 아니라
+            대상이 정해져 있습니다. 아래 네 갈래 중 어디에 해당하는지 먼저 확인하세요.
             검색창에 정부지원안마바우처처럼 붙여 쓰셨더라도 같은 제도를 가리킵니다.
           </p>
           <TargetCards targets={targets} />
@@ -124,6 +118,17 @@ export default function HomePage() {
             안마바우처 신청방법 자세히 보기
             <ChevronRight size={17} aria-hidden />
           </Link>
+        </section>
+
+        <section className="section">
+          <h2 className="text-h2 font-extrabold tracking-tight">
+            이용할 안마원 찾기
+          </h2>
+          <p className="mb-4 text-body text-muted">
+            대상에 해당하고 신청까지 마치셨다면, 바우처를 이용할 시각장애인 안마원을 찾아보세요.
+            신청은 안마원이 아니라 주민센터에서 합니다.
+          </p>
+          <LocationFinder query="시각장애인 안마원" label="안마원" broadQuery="안마원" />
         </section>
 
         <section className="section">
