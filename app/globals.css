@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  /* 안마바로 팔레트 — 스펙 §9. 대비는 실측 계산값(WCAG). */
+  --color-primary: #0f3d3e;      /* 딥 틸 · 솔리드 CTA 배경 (흰 글씨 11.95:1 AAA) */
+  --color-on-primary: #ffffff;
+  --color-secondary: #14514f;
+  --color-accent: #0d7f6e;       /* 돌봄 그린 · 비텍스트 강조 전용 (4.55:1) */
+  --color-link: #095a4d;         /* 본문 링크 · 텍스트 강조 (canvas 7.54:1 AAA) */
+  --color-background: #ffffff;
+  --color-canvas: #f4f7f5;
+  --color-band: #e8f1ec;
+  --color-foreground: #122023;   /* canvas 15.49:1 AAA */
+  --color-muted: #52625f;        /* canvas 5.95:1 AA */
+  --color-border: #d7e3dd;
+  --color-destructive: #b3261e;  /* 흰 배경 6.54:1 AA */
+  --color-ring: #0d7f6e;
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-on-primary: var(--color-on-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-link: var(--color-link);
+  --color-background: var(--color-background);
+  --color-canvas: var(--color-canvas);
+  --color-band: var(--color-band);
+  --color-foreground: var(--color-foreground);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-destructive: var(--color-destructive);
+  --color-ring: var(--color-ring);
+  --font-sans: var(--font-pretendard);
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  font-size: 18px; /* 고령자 기준 상향 — 스펙 §10 */
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 벤토 타일: 연한 캔버스 위에 올라가는 흰색 모듈 */
+.tile {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 1px rgba(15, 23, 42, 0.02);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+/* 스펙 §10.3 — 포커스는 항상 눈에 보이게 */
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

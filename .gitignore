@@ -6,11 +6,10 @@
 # next.js
 /.next/
 /out/
-/build
 next-env.d.ts
 
 # production
-/dist
+/build
 
 # misc
 .DS_Store
@@ -22,7 +21,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env
+# env files
 .env
 .env*.local
 

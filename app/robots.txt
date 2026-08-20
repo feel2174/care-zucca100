@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://care.zucca100.com/sitemap.xml
+
+#DaumWebMasterTool:85db887f0f3b4f1ee59517368f7f1f907894c72ecb1bfeeea81216bbf2861213:qTPjCWjQR4PJJHuvkeuxRA==
