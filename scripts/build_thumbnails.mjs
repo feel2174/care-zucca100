@@ -5,37 +5,24 @@
  * 피하라"고 안내한다. 그래서 공유용 OG 카드(트랙 A, 키워드 텍스트 큼)와 별도로,
  * 텍스트를 최소화한 아이콘·도형 기반 이미지를 여기서 만든다.
  *
- * 로컬 Chrome을 헤드리스로 돌려 SVG를 PNG로 굽는다 — 새 npm 의존성이 없다.
+ * SVG → PNG 변환은 sharp로 한다(브라우저 없음).
+ *
+ * 처음에는 헤드리스 Chrome `--screenshot`을 썼는데, 사용자 Chrome과 프로필이 충돌해
+ * 창이 깜빡였다. `--user-data-dir`로 격리하자 이번엔 30번의 순차 호출이 프로필
+ * SingletonLock에 걸려 두 번째 호출부터 무한 대기했다. 호출마다 프로필을 분리해도
+ * 첫 실행 초기화에서 멈췄다. 브라우저를 아예 쓰지 않는 쪽이 옳다.
+ *
  * 실행: node scripts/build_thumbnails.mjs
  */
-import { execFileSync } from "node:child_process";
-import { mkdirSync, writeFileSync, rmSync, readdirSync } from "node:fs";
+import sharp from "sharp";
+import { mkdirSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public", "thumb");
-const TMP = join(ROOT, ".thumb-tmp");
 
-// 전용 임시 프로필을 쓴다. 안 그러면 헤드리스 Chrome이 사용자의 기본 프로필을 잡으려 하면서
-// 실행 중인 Chrome과 충돌하고 창이 깜빡인다.
-//
-// 단, 프로필 디렉터리를 30번의 호출이 공유하면 SingletonLock에 걸려 두 번째 호출부터
-// 무한 대기한다(실제로 겪음). 호출마다 별도 프로필을 준다.
-const chromeFlags = (name) => [
-  "--headless=new",
-  "--disable-gpu",
-  "--hide-scrollbars",
-  "--no-first-run",
-  "--no-default-browser-check",
-  "--disable-extensions",
-  "--force-device-scale-factor=1",
-  `--user-data-dir=${join(TMP, "profiles", name)}`,
-];
 
-const CHROME =
-  process.env.CHROME_PATH ||
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
 const RATIOS = { "1x1": [1200, 1200], "4x3": [1200, 900], "16x9": [1200, 675] };
 
@@ -149,37 +136,22 @@ function svg({ glyph, tone }, w, h) {
 </svg>`;
 }
 
-function main() {
+async function main() {
   mkdirSync(OUT, { recursive: true });
-  mkdirSync(TMP, { recursive: true });
 
   let n = 0;
   for (const type of TYPES) {
     for (const [ratio, [w, h]] of Object.entries(RATIOS)) {
       const name = `${type.id}-${ratio}`;
-      const htmlPath = join(TMP, `${name}.html`);
-      writeFileSync(
-        htmlPath,
-        `<html><body style="margin:0">${svg(type, w, h)}</body></html>`,
-        "utf-8"
-      );
-      execFileSync(
-        CHROME,
-        [
-          ...chromeFlags(name),
-          `--window-size=${w},${h}`,
-          `--screenshot=${join(OUT, `${name}.png`)}`,
-          `file://${htmlPath}`,
-        ],
-        { stdio: "ignore" }
-      );
+      await sharp(Buffer.from(svg(type, w, h)))
+        .png({ compressionLevel: 9 })
+        .toFile(join(OUT, `${name}.png`));
       n += 1;
     }
   }
 
-  rmSync(TMP, { recursive: true, force: true });
   const written = readdirSync(OUT).filter((f) => f.endsWith(".png")).length;
   console.log(`generated ${n} thumbnails -> public/thumb (${written} png on disk)`);
 }
 
-main();
+await main();
