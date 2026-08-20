@@ -34,6 +34,34 @@
   --font-sans: var(--font-pretendard);
 }
 
+/* ─────────────────────────────────────────────────────────────
+   타입 스케일 — 6단계로 고정 (스펙 §10.1)
+   임의값(text-[15.5px] 등) 금지. 반드시 아래 6개 중에서 고른다.
+   최소 단계가 14px이라 "14px 미만 금지" 규칙이 구조적으로 지켜진다.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --text-caption: 0.875rem; /* 14px — 면책·푸터·보조 문구 */
+  --text-caption--line-height: 1.7;
+
+  --text-meta: 1rem; /* 16px — 카드 설명·라벨 */
+  --text-meta--line-height: 1.7;
+
+  --text-body: 1.125rem; /* 18px — 본문 (body 기본값과 동일) */
+  --text-body--line-height: 1.8;
+
+  --text-lead: 1.25rem; /* 20px — 인트로 문단·카드 제목 */
+  --text-lead--line-height: 1.6;
+
+  --text-h2: 1.5rem; /* 24px — 섹션 제목 */
+  --text-h2--line-height: 1.4;
+
+  --text-h1: 1.875rem; /* 30px — 페이지 제목 */
+  --text-h1--line-height: 1.3;
+
+  --text-h1lg: 2.25rem; /* 36px — 페이지 제목(sm 이상) */
+  --text-h1lg--line-height: 1.25;
+}
+
 body {
   background: var(--color-canvas);
   color: var(--color-foreground);
@@ -45,12 +73,47 @@ body {
   overflow-wrap: break-word;
 }
 
-/* 벤토 타일: 연한 캔버스 위에 올라가는 흰색 모듈 */
+/* ─────────────────────────────────────────────────────────────
+   간격 시스템 — 컴포넌트가 각자 패딩을 고르지 않게 여기서 고정한다.
+   18px 본문이 답답하지 않으려면 안쪽 여백이 24px은 되어야 한다.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --pad-tile: 1.5rem; /* 24px — 타일 안쪽 여백 */
+  --pad-tile-tight: 1rem; /* 16px — 리스트형 작은 타일 */
+  --gap-grid: 0.75rem; /* 12px — 카드 그리드 간격 */
+  --gap-section: 3rem; /* 48px — 섹션 사이 */
+  --gap-heading: 0.75rem; /* 12px — 제목 → 내용 */
+  --gap-inline: 0.5rem; /* 8px — 카드 안 제목 → 설명 */
+}
+
+/* 벤토 타일: 연한 캔버스 위에 올라가는 흰색 모듈. 패딩을 내장한다. */
 .tile {
   background: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: 1.25rem;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 1px rgba(15, 23, 42, 0.02);
+  padding: var(--pad-tile);
+}
+
+/* 링크형 타일(그리드 항목)처럼 여백을 줄여야 하는 경우에만 */
+.tile-tight {
+  padding: var(--pad-tile-tight);
+}
+
+/* 섹션 리듬 — 페이지가 직접 mt-8/mt-10을 고르지 않게 한다 */
+.section + .section {
+  margin-top: var(--gap-section);
+}
+
+/* 카드 그리드 공통 간격 */
+.grid-cards {
+  display: grid;
+  gap: var(--gap-grid);
+}
+
+/* 제목 바로 아래 본문 */
+.section > h2 {
+  margin-bottom: var(--gap-heading);
 }
 
 * {
