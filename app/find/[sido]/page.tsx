@@ -22,7 +22,7 @@ export async function generateMetadata({
   const s = getSido(sido);
   if (!s) return {};
   const title = `${s.name} 시각장애인 안마원 — 안마바우처 이용처 찾기`;
-  const description = `${s.name}에서 안마바우처를 이용할 수 있는 시각장애인 안마원과 신청처인 주민센터를 네이버 지도로 확인하세요.`;
+  const description = `${s.name}에서 안마바우처를 이용할 수 있는 시각장애인 안마원과 신청처인 주민센터를 지도에서 확인하세요. 정부지원 안마바우처는 연 48회, 회당 60분, 본인부담 10%로 이용합니다.`;
   return {
     title,
     description,

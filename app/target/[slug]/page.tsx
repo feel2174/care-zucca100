@@ -21,20 +21,26 @@ export async function generateMetadata({
   const { slug } = await params;
   const t = getTarget(slug);
   if (!t) return {};
+  // summary만 쓰면 40~50자라 검색결과 공간을 못 채운다. 소득기준·지원내용을 붙여
+  // 100자 내외로 만들고 키워드도 함께 싣는다.
+  const description =
+    t.role === "recipient"
+      ? `${t.summary} ${t.income} 월 4회·연 48회, 회당 60분, 본인부담 10%로 이용합니다.`
+      : `${t.summary} 안마 서비스를 받고자 하신다면 어르신·장애인·국가유공자 안마바우처 안내를 확인하세요.`;
   return {
     title: t.seoTitle,
-    description: t.summary,
+    description,
     keywords: t.keywords,
     alternates: { canonical: `/target/${t.slug}` },
     openGraph: {
       title: `${t.seoTitle} | ${SITE.name}`,
-      description: t.summary,
+      description,
       url: `${SITE.url}/target/${t.slug}`,
     },
     twitter: {
       card: "summary_large_image",
       title: `${t.seoTitle} | ${SITE.name}`,
-      description: t.summary,
+      description,
     },
   };
 }

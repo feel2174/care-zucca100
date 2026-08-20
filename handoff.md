@@ -26,11 +26,11 @@
 
 ## 프로젝트 좌표
 
-- 작업 폴더: `~/Downloads/anma-zucca100` (macOS) — git init·리모트 연결 **완료**
+- 작업 폴더: `~/Downloads/care-zucca100` (macOS) — git init·리모트 연결 **완료**
 - 템플릿 원본: `~/Downloads/party-zucca100.com` — 없으면 `git clone https://github.com/feel2174/party-zucca100.com`
 - 배포 도메인: **`care.zucca100.com`** (확정 2026-08-20 — `anma`는 업소 오인·광고 브랜드안전 리스크로 회피. 스펙 §12.4)
 - 브랜드 가칭: **안마바로**
-- GitHub: `https://github.com/feel2174/anma-zucca100.git`
+- GitHub: `https://github.com/feel2174/care-zucca100.git`
 - 포트폴리오 형제: claim-hub, finance-hub, party-zucca100 (모두 zucca100 서브도메인, Next.js 동일 패턴)
 - AdSense 퍼블리셔: `ca-pub-9196149361612087` / Taboola: `zucca-network` (네트워크 단위, 재사용 가능)
 - 로컬 환경 확인됨: Node **v24.16.0**(`.ts` 직접 실행 가능), npm 11.13.0, `python3` 3.9.6

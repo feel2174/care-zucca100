@@ -1,7 +1,7 @@
 # 안마바로 (care.zucca100.com) — 설계 스펙
 
 - 작성일: 2026-08-20 (개정: 2026-08-20 — SPIKE 확정, 브랜드/접근성/SEO 장 신설)
-- 작업 폴더: `~/Downloads/anma-zucca100` (macOS) · git 초기화 및 리모트 연결 완료
+- 작업 폴더: `~/Downloads/care-zucca100` (macOS) · git 초기화 및 리모트 연결 완료
 - 템플릿 원본: `~/Downloads/party-zucca100.com`
 - 배포: `care.zucca100.com` (zucca100 서브도메인) — **확정 2026-08-20**, 근거는 §12.4
 - 브랜드 가칭: **안마바로** (나중에 교체 가능)

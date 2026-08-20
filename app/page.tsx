@@ -37,7 +37,7 @@ export default function HomePage() {
 
       <div className="bg-band">
         <div className="mx-auto max-w-4xl px-6 pb-10 pt-8">
-          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-white/70 px-3 py-1.5 text-caption font-bold text-link">
+          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-background px-3 py-1.5 text-caption font-bold text-link">
             ✦ 제도 안내 전용 · 특정 안마원을 추천하지 않습니다
           </span>
           <h1 className="mb-3 text-h1 font-extrabold tracking-tight text-primary sm:text-h1lg">
