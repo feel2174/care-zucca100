@@ -1,4 +1,4 @@
-# 안마바로 (anma.zucca100.com) — 작업 핸드오프
+# 안마바로 (care.zucca100.com) — 작업 핸드오프
 
 > 다른 디바이스에서 이어서 작업하기 위한 인수인계 문서. 최종 업데이트: 2026-08-20 (2차 — 기획·설계 완료)
 
@@ -22,14 +22,13 @@
 
 - **구현 전혀 시작 안 함.** 계획서 Task 1부터 순차 실행하면 됨 (Task 2는 완료 상태로 스킵).
 - 태스크는 총 15개(1~13 + 12B + 12C). 12B/12C가 이번에 새로 추가된 SEO 이미지 작업.
-- ⚠️ **서브도메인 미확정** — 계획서 하단 "미결 결정" 참고. 첫 배포 전에 정해야 함.
 - 배포(Vercel·DNS·AdSense 승인)는 사용자 로그인 필요, 마지막 단계.
 
 ## 프로젝트 좌표
 
 - 작업 폴더: `~/Downloads/anma-zucca100` (macOS) — git init·리모트 연결 **완료**
 - 템플릿 원본: `~/Downloads/party-zucca100.com` — 없으면 `git clone https://github.com/feel2174/party-zucca100.com`
-- 배포 도메인(예정): `anma.zucca100.com` ← **확정 아님**
+- 배포 도메인: **`care.zucca100.com`** (확정 2026-08-20 — `anma`는 업소 오인·광고 브랜드안전 리스크로 회피. 스펙 §12.4)
 - 브랜드 가칭: **안마바로**
 - GitHub: `https://github.com/feel2174/anma-zucca100.git`
 - 포트폴리오 형제: claim-hub, finance-hub, party-zucca100 (모두 zucca100 서브도메인, Next.js 동일 패턴)
@@ -109,7 +108,7 @@
    - git init 스텝 없음(이미 초기화·리모트 연결됨)
    - **Task 2는 완료 상태 — 스킵**
 3. party-zucca100 원본이 로컬에 없으면 `git clone https://github.com/feel2174/party-zucca100.com` 로 참고본 확보.
-4. 착수 전 서브도메인을 확정할 것(계획서 "미결 결정").
+4. 서브도메인은 `care.zucca100.com`로 확정됨(계획서 "확정 결정 로그").
 
 ## 기술 규약 (형제 사이트 공통)
 

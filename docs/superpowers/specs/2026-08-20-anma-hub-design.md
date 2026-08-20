@@ -1,9 +1,9 @@
-# 안마바로 (anma.zucca100.com) — 설계 스펙
+# 안마바로 (care.zucca100.com) — 설계 스펙
 
 - 작성일: 2026-08-20 (개정: 2026-08-20 — SPIKE 확정, 브랜드/접근성/SEO 장 신설)
 - 작업 폴더: `~/Downloads/anma-zucca100` (macOS) · git 초기화 및 리모트 연결 완료
 - 템플릿 원본: `~/Downloads/party-zucca100.com`
-- 배포: `anma.zucca100.com` (zucca100 서브도메인)
+- 배포: `care.zucca100.com` (zucca100 서브도메인) — **확정 2026-08-20**, 근거는 §12.4
 - 브랜드 가칭: **안마바로** (나중에 교체 가능)
 - 포트폴리오 4번째 니치 사이트. finance-hub / party-zucca100 구조 복제.
 
@@ -106,7 +106,7 @@ AdSense 수익화(`ca-pub-9196149361612087`). 대상별 롱테일 + 지역별 �
 - **Taboola 유지**(party와 동일 구성). `public/taboola-init.js`의 `PUBLISHER_ID='zucca-network'`는 사이트 종속이 아닌 네트워크 단위 ID라 그대로 재사용한다. `components/TaboolaPlacements.tsx`도 승계.
 - `@vercel/analytics`의 `<Analytics/>`도 party와 동일하게 유지.
 - Footer에 형제 사이트 링크(claim/finance/party.zucca100.com).
-- 배포: GitHub repo → Vercel import → `anma.zucca100.com` DNS(CNAME) — 외부 조작은 사용자 로그인 후.
+- 배포: GitHub repo → Vercel import → `care.zucca100.com` DNS(CNAME) — 외부 조작은 사용자 로그인 후.
 
 ## 7. 구현 순서 (개요, 상세는 implementation plan에서)
 
@@ -293,6 +293,12 @@ Pretendard 로컬 폰트 구성, `word-break: keep-all; overflow-wrap: break-wor
 
 "안마" 키워드는 성인 업소 스팸과 검색 공간이 인접한다. 오분류는 AdSense 승인 자체를 위협한다.
 
+- **서브도메인을 `anma`가 아닌 `care`로 둔다(확정).** URL 문자열의 "anma"는 광고 브랜드안전
+  분류기와 어르신 사용자 양쪽에서 업소 오인을 유발할 수 있는데, 서브도메인 문자열이 한국어 키워드
+  랭킹에 주는 영향은 사실상 없다 — 잃을 SEO 없이 리스크만 줄인다. 형제 사이트의 짧은 영어 일반명사
+  규칙(`claim`/`finance`/`party`)과도 일치한다.
+  **브랜드명은 "안마바로"를 유지한다** — 페이지 `<title>`·본문에는 `안마바우처` 키워드가 반드시
+  들어가야 검색에 잡히므로, 리스크는 URL 레이어에서만 걷어내고 콘텐츠 레이어는 그대로 둔다.
 - **이미지에 사람 신체·마사지 장면 사진 금지.** 아이콘/일러스트만.
 - OG·썸네일·`alt`에 "출장", "1인샵", "예약" 등 업소 연상 표현 금지.
 - 항상 "정부지원", "시각장애인 안마사", "바우처" 같은 제도 맥락 어휘와 함께 쓴다.
