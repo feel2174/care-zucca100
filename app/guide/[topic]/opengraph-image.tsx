@@ -26,6 +26,21 @@ const COPY: Record<GuideSlug, { eyebrow: string; headline: string; sub: string }
     headline: "국민행복카드 발급",
     sub: "발급처·필요서류·사용처를 정리했습니다.",
   },
+  period: {
+    eyebrow: "지자체별 상이",
+    headline: "안마바우처 신청기간",
+    sub: "연중 수시 접수와 기간제 접수의 차이",
+  },
+  renew: {
+    eyebrow: "자동 연장 아님",
+    headline: "재신청·연장",
+    sub: "기간이 끝나면 다시 신청해야 합니다.",
+  },
+  balance: {
+    eyebrow: "월 4회 배정",
+    headline: "잔여 횟수 확인",
+    sub: "전자바우처·카드사·제공기관에서 조회",
+  },
 };
 
 export default async function Image({ params }: { params: Promise<{ topic: string }> }) {

@@ -114,6 +114,10 @@ const TYPES = [
   { id: "guide-apply", glyph: docGlyph, tone: C.primary },
   { id: "guide-cost", glyph: clockGlyph, tone: C.primary },
   { id: "guide-card", glyph: cardGlyph, tone: C.primary },
+  { id: "guide-hub", glyph: docGlyph, tone: C.primary },
+  { id: "guide-period", glyph: clockGlyph, tone: C.primary },
+  { id: "guide-renew", glyph: docGlyph, tone: C.accent },
+  { id: "guide-balance", glyph: clockGlyph, tone: C.accent },
   { id: "find", glyph: pinGlyph, tone: C.primary },
   { id: "maternity", glyph: babyGlyph, tone: C.primary },
 ];

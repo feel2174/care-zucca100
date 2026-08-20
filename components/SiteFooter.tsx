@@ -6,6 +6,8 @@ const SITE_LINKS = [
   { label: "어르신 안마바우처", href: "/target/senior" },
   { label: "장애인 안마바우처", href: "/target/disabled" },
   { label: "안마바우처 신청방법", href: "/guide/apply" },
+  { label: "신청기간·재신청", href: "/guide/period" },
+  { label: "가이드 전체보기", href: "/guide" },
   { label: "본인부담금·횟수", href: "/guide/cost" },
   { label: "가까운 안마원 찾기", href: "/find" },
 ];

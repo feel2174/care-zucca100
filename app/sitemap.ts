@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const paths = [
     "",
+    "/guide",
     "/find",
     "/related/maternity",
     ...getTargets().map((t) => `/target/${t.slug}`),
