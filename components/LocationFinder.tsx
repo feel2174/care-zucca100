@@ -31,6 +31,10 @@ export function LocationFinder({
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const sidos = getSidos();
+  // 실측(2026-08-20): 지역명 텍스트 + "시각장애인" 조합은 결과가 0~3개로 사실상 비어 있다
+  // (제주 0, 세종 0, 전남 1, 서울 3). 반면 지역명 + "안마원"은 전국에서 정상(서울 50,
+  // 제주 20, 세종 3, 강원 33). "시각장애인" 접두어는 좌표 검색에서만 유효하다.
+  const regionQuery = broadQuery ?? query;
 
   function openNearby() {
     if (!("geolocation" in navigator)) {
@@ -101,7 +105,7 @@ export function LocationFinder({
           {sidos.map((s) => (
             <a
               key={s.slug}
-              href={buildNaverMapUrl(`${s.name} ${query}`)}
+              href={buildNaverMapUrl(`${s.name} ${regionQuery}`)}
               className="flex min-h-[48px] items-center justify-center rounded-lg bg-band px-3 text-center text-meta font-semibold text-foreground transition-colors hover:text-link"
             >
               {s.name}

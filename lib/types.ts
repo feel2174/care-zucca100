@@ -14,4 +14,9 @@ export type Target = {
   keywords: string[]; // 이 페이지가 노리는 키워드(다른 페이지와 겹치지 않게)
 };
 
-export type Sido = { slug: string; name: string };
+export type Sido = {
+  slug: string;
+  name: string;
+  /** 시군구 목록. 세종은 단층제라 빈 배열이다. */
+  sigungu: string[];
+};
