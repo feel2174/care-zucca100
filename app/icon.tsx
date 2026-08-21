@@ -19,7 +19,7 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0F3D3E",
+          background: "linear-gradient(150deg, #10b981 0%, #0d7f6e 100%)",
           borderRadius: 20,
           fontFamily: "Pretendard",
           fontSize: 58,

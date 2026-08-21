@@ -2,7 +2,8 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const OG_SIZE = { width: 1200, height: 630 };
+// 2x resolution (120:63 ratio) — vector-sourced, stays crisp when scaled up.
+export const OG_SIZE = { width: 2400, height: 1260 };
 export const OG_CONTENT_TYPE = "image/png";
 
 /**
@@ -30,30 +31,79 @@ export async function renderOgCard({
     (
       <div
         style={{
+          position: "relative",
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          gap: 24,
-          padding: "0 96px",
-          background: "#0F3D3E",
+          padding: "0 200px",
+          background: "#0A2A2B",
           backgroundImage:
-            "radial-gradient(circle at 82% 22%, rgba(13,127,110,0.45), transparent 55%)",
+            "radial-gradient(circle at 80% 26%, rgba(16,185,129,0.45), transparent 52%), radial-gradient(circle at 12% 98%, rgba(13,127,110,0.22), transparent 46%)",
+          overflow: "hidden",
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            top: 150,
+            right: 130,
+            width: 620,
+            height: 620,
+            borderRadius: 620,
+            background:
+              "radial-gradient(circle at 38% 34%, rgba(52,211,153,0.50), rgba(13,127,110,0.05) 62%, transparent 72%)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: 250,
+            right: 250,
+            width: 420,
+            height: 420,
+            borderRadius: 420,
+            border: "3px solid rgba(153,221,204,0.26)",
+          }}
+        />
+
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            width: 176,
+            height: 176,
+            borderRadius: 42,
+            alignItems: "center",
+            justifyContent: "center",
+            background: "linear-gradient(150deg, #10b981 0%, #0d7f6e 100%)",
+            boxShadow:
+              "0 46px 88px rgba(13,127,110,0.55), inset 0 3px 0 rgba(255,255,255,0.4)",
+            marginBottom: 52,
+            fontFamily: "Pretendard",
+            fontWeight: 800,
+            fontSize: 104,
+            color: "#FFFFFF",
+          }}
+        >
+          안
+        </div>
+
         <div
           style={{
             display: "flex",
             alignItems: "center",
             borderRadius: 999,
-            background: "rgba(255,255,255,0.14)",
-            padding: "10px 24px",
-            fontSize: 30,
+            background: "rgba(16,185,129,0.16)",
+            border: "1px solid rgba(110,231,183,0.35)",
+            padding: "14px 30px",
+            marginBottom: 32,
+            fontSize: 40,
             fontFamily: "Pretendard",
             fontWeight: 500,
-            color: "#BFE0D6",
+            color: "#A7F3D0",
           }}
         >
           {eyebrow}
@@ -61,13 +111,14 @@ export async function renderOgCard({
         <div
           style={{
             display: "flex",
-            fontSize: 82,
+            fontSize: 128,
             fontFamily: "Pretendard",
             fontWeight: 800,
             color: "#FFFFFF",
-            letterSpacing: -2,
-            lineHeight: 1.2,
-            maxWidth: 1000,
+            letterSpacing: -4,
+            lineHeight: 1.14,
+            maxWidth: 1760,
+            wordBreak: "keep-all",
           }}
         >
           {headline}
@@ -75,11 +126,14 @@ export async function renderOgCard({
         <div
           style={{
             display: "flex",
-            fontSize: 34,
+            marginTop: 36,
+            fontSize: 58,
             fontFamily: "Pretendard",
             fontWeight: 500,
             color: "#9DBDB4",
-            maxWidth: 960,
+            maxWidth: 1600,
+            lineHeight: 1.35,
+            wordBreak: "keep-all",
           }}
         >
           {sub}

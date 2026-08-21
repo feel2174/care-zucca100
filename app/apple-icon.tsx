@@ -17,7 +17,7 @@ export default async function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0F3D3E",
+          background: "linear-gradient(150deg, #10b981 0%, #0d7f6e 100%)",
           fontFamily: "Pretendard",
           fontSize: 108,
           fontWeight: 800,
